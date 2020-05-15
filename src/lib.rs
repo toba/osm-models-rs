@@ -13,6 +13,10 @@ pub mod item_type {
 
 use hashbrown::HashMap;
 
+pub use node::Node;
+pub use relation::{restriction, role, Relation};
+pub use way::{way_type, Way};
+
 /// Used for identifying the element. Element types have their own ID space,
 /// so there could be a node with id=100 and a way with id=100, which are
 /// unlikely to be related or geographically near to each other.
