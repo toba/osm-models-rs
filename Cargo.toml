@@ -1,6 +1,6 @@
 [package]
 name = "osm_models"
-version = "1.0.2"
+version = "0.2.0"
 authors = ["Jason Abbott <you@example.com>"]
 edition = "2018"
 license = "MIT"
@@ -9,4 +9,4 @@ repository = "https://github.com/toba/osm-models-rs.git"
 readme = "README.md"
 
 [dependencies]
-hashbrown = { version = "0.7", features = ["serde"] }
+hashbrown = "0.7"
