@@ -1,11 +1,11 @@
 [package]
 name = "osm_models"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Jason Abbott <you@example.com>"]
 edition = "2018"
 license = "MIT"
 homepage = ""
-repository = ""
+repository = "https://github.com/toba/osm-models-rs.git"
 readme = "README.md"
 
 [dependencies]

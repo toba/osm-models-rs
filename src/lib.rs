@@ -1,12 +1,11 @@
 #![allow(dead_code)]
 
-mod node;
-mod overpass;
-mod relation;
-mod tag;
-mod way;
-
-mod item_type {
+pub mod node;
+pub mod overpass;
+pub mod relation;
+pub mod tag;
+pub mod way;
+pub mod item_type {
     pub static NODE: &'static str = "node";
     pub static WAY: &'static str = "way";
     pub static RELATION: &'static str = "relation";
@@ -28,9 +27,9 @@ use hashbrown::HashMap;
 ///
 pub struct AreaData {
     /// Nodes keyed to their ID
-    nodes: HashMap<u16, node::Node>,
+    pub nodes: HashMap<u16, node::Node>,
     /// Ways keyed to their ID
-    ways: HashMap<u16, way::Way>,
+    pub ways: HashMap<u16, way::Way>,
 
-    relations: Vec<relation::Relation>,
+    pub relations: Vec<relation::Relation>,
 }

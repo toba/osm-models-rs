@@ -13,7 +13,7 @@ use hashbrown::HashMap;
 /// https://wiki.openstreetmap.org/wiki/Way
 ///
 pub struct Way {
-    nodes: Vec<Node>,
+    pub nodes: Vec<Node>,
 
     /// Used for identifying the element. Element types have their own ID space,
     /// so there could be a node with id=100 and a way with id=100, which are
@@ -28,11 +28,11 @@ pub struct Way {
     /// sent by the editing application, by assigning an actual positive
     /// identifier for each created object, and will return a mapping from the
     /// negative identifiers used to their assigned positive identifiers).
-    id: u32,
+    pub id: u32,
 
     /// Time of the last modification
     /// example: "2016-12-31T23:59:59.999Z"
-    timestamp: Option<u32>,
+    pub timestamp: Option<u32>,
 
     /// All types of data element (nodes, ways and relations), as well as
     /// changesets, can have tags. Tags describe the meaning of the particular
@@ -57,7 +57,7 @@ pub struct Way {
     ///
     /// https://wiki.openstreetmap.org/wiki/Tags
     ///
-    tags: Option<HashMap<String, Option<String>>>,
+    pub tags: Option<HashMap<String, Option<String>>>,
 }
 
 pub mod way_type {

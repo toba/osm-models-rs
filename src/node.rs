@@ -25,27 +25,27 @@ pub struct Node {
     /// sent by the editing application, by assigning an actual positive
     /// identifier for each created object, and will return a mapping from the
     /// negative identifiers used to their assigned positive identifiers).
-    id: u32,
+    pub id: u32,
 
     /// Latitude coordinate in degrees (North of equator is positive) using the
     /// standard WGS84 projection
-    lat: f32,
+    pub lat: f32,
 
     /// Longitude coordinate in degrees (East of Greenwich is positive) using
     /// the standard WGS84 projection. Note that the geographic poles will be
     /// exactly at latitude ±90 degrees but in that case the longitude will be
     /// set to an arbitrary value within this range.
-    lon: f32,
+    pub lon: f32,
 
     /// Altitude or elevation
-    ele: Option<f32>,
+    pub ele: Option<f32>,
 
-    open: Option<bool>,
-    date: Option<u32>,
+    pub open: Option<bool>,
+    pub date: Option<u32>,
 
     /// Time of the last modification
     /// example: "2016-12-31T23:59:59.999Z"
-    timestamp: Option<u32>,
+    pub timestamp: Option<u32>,
 
     /// All types of data element (nodes, ways and relations), as well as
     /// changesets, can have tags. Tags describe the meaning of the particular
@@ -70,11 +70,11 @@ pub struct Node {
     ///
     /// https://wiki.openstreetmap.org/wiki/Tags
     ///
-    tags: Option<HashMap<String, Option<String>>>,
+    pub tags: Option<HashMap<String, Option<String>>>,
 }
 
 impl Node {
-    fn point(&self) -> (f32, f32) {
+    pub fn point(&self) -> (f32, f32) {
         (self.lat, self.lon)
     }
 }

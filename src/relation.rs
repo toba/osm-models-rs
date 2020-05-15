@@ -2,9 +2,9 @@ use crate::node::Node;
 use hashbrown::HashMap;
 
 pub struct Member {
-    nodes: Vec<Node>,
+    pub nodes: Vec<Node>,
     /// https://wiki.openstreetmap.org/wiki/Relation#Roles
-    role: String,
+    pub role: String,
 }
 
 /// Restrictions and boundaries defined among a collection of nodes
@@ -13,7 +13,7 @@ pub struct Member {
 /// https://wiki.openstreetmap.org/wiki/Relation:restriction
 ///
 pub struct Relation {
-    members: Vec<Member>,
+    pub members: Vec<Member>,
 
     /// Used for identifying the element. Element types have their own ID space,
     /// so there could be a node with id=100 and a way with id=100, which are
@@ -28,11 +28,11 @@ pub struct Relation {
     /// sent by the editing application, by assigning an actual positive
     /// identifier for each created object, and will return a mapping from the
     /// negative identifiers used to their assigned positive identifiers).
-    id: u32,
+    pub id: u32,
 
     /// Time of the last modification
     /// example: "2016-12-31T23:59:59.999Z"
-    timestamp: Option<u32>,
+    pub timestamp: Option<u32>,
 
     /// All types of data element (nodes, ways and relations), as well as
     /// changesets, can have tags. Tags describe the meaning of the particular
@@ -57,7 +57,7 @@ pub struct Relation {
     ///
     /// https://wiki.openstreetmap.org/wiki/Tags
     ///
-    tags: HashMap<String, Option<String>>,
+    pub tags: HashMap<String, Option<String>>,
 }
 
 /// Relation member roles
