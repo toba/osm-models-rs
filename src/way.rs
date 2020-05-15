@@ -135,15 +135,15 @@ pub mod way_type {
     pub static MINOR: &'static str = "unclassified";
 }
 
-/// Modes of travel
-pub mod travel_mode {
+/// Means of travel
+pub mod travel_by {
     use crate::tag;
 
     pub static CAR: &'static str = "car";
     pub static BUS: &'static str = tag::BUS;
     pub static BICYCLE: &'static str = tag::BICYCLE;
     pub static HORSE: &'static str = tag::HORSE;
-    pub static WALK: &'static str = tag::FOOT;
+    pub static FOOT: &'static str = tag::FOOT;
     pub static MOTORCYCLE: &'static str = tag::MOTORCYCLE;
     pub static TRAM: &'static str = "tram";
     pub static TRAIN: &'static str = "train";
