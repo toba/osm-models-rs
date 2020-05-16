@@ -67,10 +67,10 @@ pub type Timestamp = Option<String>;
 /// Box-bounded OSM data download including
 ///
 /// - All nodes that are inside a given bounding box and any relations that
-///   reference them.
+///   reference them
 /// - All ways that reference at least one node that is inside a given bounding
 ///   box, any relations that reference them [the ways], and any nodes outside
-///   the bounding box that the ways may reference.
+///   the bounding box that the ways may reference
 /// - All relations that reference one of the nodes, ways or relations included
 ///   due to the above rules. (Does not apply recursively.)
 ///
@@ -78,9 +78,9 @@ pub type Timestamp = Option<String>;
 ///
 pub struct AreaData<'a> {
     /// Nodes keyed to their ID
-    pub nodes: HashMap<u16, Node<'a>>,
+    pub nodes: HashMap<ElementID, Node<'a>>,
     /// Ways keyed to their ID
-    pub ways: HashMap<u16, Way<'a>>,
+    pub ways: HashMap<ElementID, Way<'a>>,
 
     pub relations: Vec<Relation<'a>>,
 }

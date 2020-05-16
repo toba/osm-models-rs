@@ -1,5 +1,6 @@
 use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
 
+/// Relation member entry may refer to a single `Node` or a `Way` of nodes
 pub struct Member<'a> {
     pub nodes: Vec<&'a Node<'a>>,
     /// https://wiki.openstreetmap.org/wiki/Relation#Roles
@@ -29,7 +30,21 @@ impl<'a> Tagged for Relation<'a> {
     }
 }
 
-/// Relation member roles
+/// A **role** is an optional textual field describing the function of a member
+/// of the relation. For example, in North America, `east` indicates that a way
+/// would be posted as East on the directional plate of a route numbering
+/// shield. Or, multipolygon relation, `inner` and `outer` are used to specify
+/// whether a way forms the inner or outer part of that polygon.
+///
+/// ### Multipolygon
+/// [Multipolygons](https://wiki.openstreetmap.org/wiki/Relation:multipolygon)
+/// are one of two methods to represent area areas in OpenStreetMap. While most
+/// areas are represented as a single closed way closed way, almost all area features can also be mapped using multipolygon relations. This is needed when the area needs to exclude inner rings (holes), has multiple outer areas (exclaves), or uses more than ~2000 nodes.
+///
+/// In the multipolygon relation, the inner and outer roles are used to specify whether a member way forms the inner or outer part of that polygon enclosing an area. For example, an inner way could define an island in a lake (which is mapped as relation).
+///
+/// ### Bus Route
+///
 pub mod role {
     pub static FROM: &'static str = "from";
     pub static VIA: &'static str = "via";

@@ -1,4 +1,10 @@
-//! Common tags relevant to routing
+use serde::Deserialize;
+
+#[derive(Deserialize)]
+pub struct Tag {
+    key: String,
+    value: String,
+}
 
 pub trait Tagged {
     /// Value of the tag or `None` if the tag isn't applied or it's applied

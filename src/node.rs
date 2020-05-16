@@ -1,4 +1,5 @@
 use crate::{tag::Tagged, ElementID, TagMap, Timestamp};
+use serde::Deserialize;
 
 /// A node is one of the core elements in the OpenStreetMap data model. It
 /// consists of a single point in space defined by its latitude, longitude and
@@ -11,7 +12,7 @@ use crate::{tag::Tagged, ElementID, TagMap, Timestamp};
 ///
 /// https://wiki.openstreetmap.org/wiki/Node
 ///
-#[derive(Default)]
+#[derive(Default, Deserialize)]
 pub struct Node<'a> {
     pub id: ElementID,
 
