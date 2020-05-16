@@ -1,7 +1,7 @@
 use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
 
-pub struct Member {
-    pub nodes: Vec<Node>,
+pub struct Member<'a> {
+    pub nodes: Vec<Node<'a>>,
     /// https://wiki.openstreetmap.org/wiki/Relation#Roles
     pub role: String,
 }
@@ -11,14 +11,14 @@ pub struct Member {
 /// https://wiki.openstreetmap.org/wiki/Relation
 /// https://wiki.openstreetmap.org/wiki/Relation:restriction
 ///
-pub struct Relation {
-    pub members: Vec<Member>,
+pub struct Relation<'a> {
+    pub members: Vec<Member<'a>>,
     pub id: ElementID,
     pub timestamp: Timestamp,
-    pub tags: TagMap,
+    pub tags: TagMap<'a>,
 }
 
-impl Tagged for Relation {
+impl<'a> Tagged for Relation<'a> {
     fn get_tag(&self, key: &str) -> Option<&str> {
         self.tags.get(key).map_or(None, |t| t.as_deref())
     }

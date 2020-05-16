@@ -11,14 +11,14 @@ use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
 ///
 /// https://wiki.openstreetmap.org/wiki/Way
 ///
-pub struct Way {
-    pub nodes: Vec<Node>,
+pub struct Way<'a> {
+    pub nodes: Vec<Node<'a>>,
     pub id: ElementID,
     pub timestamp: Timestamp,
-    pub tags: Option<TagMap>,
+    pub tags: Option<TagMap<'a>>,
 }
 
-impl Tagged for Way {
+impl<'a> Tagged for Way<'a> {
     fn get_tag(&self, key: &str) -> Option<&str> {
         self.tags
             .as_ref()

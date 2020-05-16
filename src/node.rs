@@ -11,7 +11,7 @@ use crate::{tag::Tagged, ElementID, TagMap, Timestamp};
 ///
 /// https://wiki.openstreetmap.org/wiki/Node
 ///
-pub struct Node {
+pub struct Node<'a> {
     pub id: ElementID,
 
     /// Latitude coordinate in degrees (North of equator is positive) using the
@@ -30,16 +30,16 @@ pub struct Node {
     pub open: Option<bool>,
     pub date: Option<u32>,
     pub timestamp: Timestamp,
-    pub tags: Option<TagMap>,
+    pub tags: Option<TagMap<'a>>,
 }
 
-impl Node {
+impl<'a> Node<'a> {
     pub fn point(&self) -> (f32, f32) {
         (self.lat, self.lon)
     }
 }
 
-impl Tagged for Node {
+impl<'a> Tagged for Node<'a> {
     fn get_tag(&self, key: &str) -> Option<&str> {
         self.tags
             .as_ref()

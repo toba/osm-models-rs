@@ -58,7 +58,7 @@ pub type ElementID = i64;
 ///
 /// https://wiki.openstreetmap.org/wiki/Tags
 ///
-pub type TagMap = HashMap<String, Option<String>>;
+pub type TagMap<'a> = HashMap<&'a str, Option<&'a str>>;
 
 /// ISO 8601 time of the last modification (e.g. "2016-12-31T23:59:59.999Z")
 /// https://wiki.openstreetmap.org/wiki/Elements#Common_attributes
@@ -76,11 +76,11 @@ pub type Timestamp = Option<String>;
 ///
 /// https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap
 ///
-pub struct AreaData {
+pub struct AreaData<'a> {
     /// Nodes keyed to their ID
-    pub nodes: HashMap<u16, node::Node>,
+    pub nodes: HashMap<u16, Node<'a>>,
     /// Ways keyed to their ID
-    pub ways: HashMap<u16, way::Way>,
+    pub ways: HashMap<u16, Way<'a>>,
 
-    pub relations: Vec<relation::Relation>,
+    pub relations: Vec<Relation<'a>>,
 }
