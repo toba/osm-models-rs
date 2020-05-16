@@ -13,7 +13,7 @@ use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
 ///
 #[derive(Default)]
 pub struct Way<'a> {
-    pub nodes: Vec<Node<'a>>,
+    pub nodes: Vec<&'a Node<'a>>,
     pub id: ElementID,
     pub timestamp: Timestamp,
     pub tags: Option<TagMap<'a>>,

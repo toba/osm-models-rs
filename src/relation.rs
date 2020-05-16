@@ -1,9 +1,9 @@
 use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
 
 pub struct Member<'a> {
-    pub nodes: Vec<Node<'a>>,
+    pub nodes: Vec<&'a Node<'a>>,
     /// https://wiki.openstreetmap.org/wiki/Relation#Roles
-    pub role: String,
+    pub role: &'a str,
 }
 
 /// Restrictions and boundaries defined among a collection of nodes
