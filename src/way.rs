@@ -1,4 +1,4 @@
-use crate::{node::Node, ElementID, TagMap, Timestamp};
+use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
 
 /// Collection of nodes representing a way of travel.
 ///
@@ -16,6 +16,20 @@ pub struct Way {
     pub id: ElementID,
     pub timestamp: Timestamp,
     pub tags: Option<TagMap>,
+}
+
+impl Tagged for Way {
+    fn get_tag(&self, key: &str) -> Option<&str> {
+        self.tags
+            .as_ref()
+            .and_then(|tags| tags.get(key).map_or(None, |t| t.as_deref()))
+    }
+
+    fn has_tag(&self, key: &str) -> bool {
+        self.tags
+            .as_ref()
+            .map_or(false, |tags| tags.contains_key(key))
+    }
 }
 
 pub mod way_type {

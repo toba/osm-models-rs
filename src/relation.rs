@@ -1,4 +1,4 @@
-use crate::{node::Node, ElementID, TagMap, Timestamp};
+use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
 
 pub struct Member {
     pub nodes: Vec<Node>,
@@ -16,6 +16,16 @@ pub struct Relation {
     pub id: ElementID,
     pub timestamp: Timestamp,
     pub tags: TagMap,
+}
+
+impl Tagged for Relation {
+    fn get_tag(&self, key: &str) -> Option<&str> {
+        self.tags.get(key).map_or(None, |t| t.as_deref())
+    }
+
+    fn has_tag(&self, key: &str) -> bool {
+        self.tags.contains_key(key)
+    }
 }
 
 /// Relation member roles

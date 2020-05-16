@@ -1,4 +1,4 @@
-use crate::{ElementID, TagMap, Timestamp};
+use crate::{tag::Tagged, ElementID, TagMap, Timestamp};
 
 /// A node is one of the core elements in the OpenStreetMap data model. It
 /// consists of a single point in space defined by its latitude, longitude and
@@ -36,5 +36,19 @@ pub struct Node {
 impl Node {
     pub fn point(&self) -> (f32, f32) {
         (self.lat, self.lon)
+    }
+}
+
+impl Tagged for Node {
+    fn get_tag(&self, key: &str) -> Option<&str> {
+        self.tags
+            .as_ref()
+            .and_then(|tags| tags.get(key).map_or(None, |t| t.as_deref()))
+    }
+
+    fn has_tag(&self, key: &str) -> bool {
+        self.tags
+            .as_ref()
+            .map_or(false, |tags| tags.contains_key(key))
     }
 }

@@ -1,5 +1,13 @@
 //! Common tags relevant to routing
 
+pub trait Tagged {
+    /// Value of the tag or `None` if the tag isn't applied or it's applied
+    /// without a value
+    fn get_tag(&self, key: &str) -> Option<&str>;
+    /// Whether tag is present even if the tag value is `None`
+    fn has_tag(&self, key: &str) -> bool;
+}
+
 /// https://wiki.openstreetmap.org/wiki/Key:access
 pub static ACCESS: &'static str = "access";
 /// `WayType` value
