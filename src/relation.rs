@@ -11,6 +11,7 @@ pub struct Member<'a> {
 /// https://wiki.openstreetmap.org/wiki/Relation
 /// https://wiki.openstreetmap.org/wiki/Relation:restriction
 ///
+#[derive(Default)]
 pub struct Relation<'a> {
     pub members: Vec<Member<'a>>,
     pub id: ElementID,

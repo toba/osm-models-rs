@@ -11,6 +11,7 @@ use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
 ///
 /// https://wiki.openstreetmap.org/wiki/Way
 ///
+#[derive(Default)]
 pub struct Way<'a> {
     pub nodes: Vec<Node<'a>>,
     pub id: ElementID,

@@ -11,6 +11,7 @@ use crate::{tag::Tagged, ElementID, TagMap, Timestamp};
 ///
 /// https://wiki.openstreetmap.org/wiki/Node
 ///
+#[derive(Default)]
 pub struct Node<'a> {
     pub id: ElementID,
 
