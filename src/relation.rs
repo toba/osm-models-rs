@@ -1,6 +1,8 @@
 use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
+use serde::Deserialize;
 
 /// Relation member entry may refer to a single `Node` or a `Way` of nodes
+#[derive(Default, Deserialize)]
 pub struct Member<'a> {
     pub nodes: Vec<&'a Node>,
     /// https://wiki.openstreetmap.org/wiki/Relation#Roles
@@ -19,7 +21,7 @@ pub struct Member<'a> {
 /// https://wiki.openstreetmap.org/wiki/Relation
 /// https://wiki.openstreetmap.org/wiki/Relation:restriction
 ///
-#[derive(Default)]
+#[derive(Default, Deserialize)]
 pub struct Relation<'a> {
     pub members: Vec<Member<'a>>,
     pub id: ElementID,

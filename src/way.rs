@@ -1,4 +1,5 @@
 use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
+use serde::Deserialize;
 
 /// Collection of nodes representing a way of travel.
 ///
@@ -11,7 +12,7 @@ use crate::{node::Node, tag::Tagged, ElementID, TagMap, Timestamp};
 ///
 /// https://wiki.openstreetmap.org/wiki/Way
 ///
-#[derive(Default)]
+#[derive(Default, Deserialize)]
 pub struct Way<'a> {
     pub nodes: Vec<&'a Node>,
     pub id: ElementID,

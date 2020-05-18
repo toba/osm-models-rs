@@ -12,6 +12,7 @@ pub mod item_type {
 }
 
 use hashbrown::HashMap;
+use serde::Deserialize;
 
 pub use node::Node;
 pub use relation::{role, Relation};
@@ -75,6 +76,7 @@ pub type Timestamp = Option<String>;
 ///
 /// https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap
 ///
+#[derive(Default, Deserialize)]
 pub struct AreaData<'a> {
     /// Nodes keyed to their ID
     pub nodes: HashMap<ElementID, Node>,
@@ -86,19 +88,19 @@ pub struct AreaData<'a> {
 
 #[cfg(test)]
 mod tests {
-    pub fn load_file() {}
+    use super::*;
+    use serde_xml_rs::from_str;
+    use std::{fs, path::Path};
 
-    // export async function sampleData(fileName = 'simple'): Promise<AreaData> {
-    //     tiles.fetchIfMissing = false;
+    pub fn load_file(file_name: &str) -> Result<AreaData, ()> {
+        fs::read_to_string(Path::new("./fixtures").join(file_name))
+            .and_then(|text| from_str(&text))
+    }
 
-    //     if (!cache.has(fileName)) {
-    //        cache.set(
-    //           fileName,
-    //           parseOsmXML(
-    //              await readFileText(path.join(__dirname, fileName + '.osm'))
-    //           )
-    //        );
-    //     }
-    //     return cache.get(fileName)!;
-    //  }
+    // pub fn load_file(file_name: &str) -> io::Result<AreaData> {
+    //     let text = fs::read_to_string(Path::new("./fixtures").join(file_name))?;
+    //     let data = from_str(&text)?;
+
+    //     Ok(data)
+    // }
 }
