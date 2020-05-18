@@ -13,7 +13,7 @@ use serde::Deserialize;
 /// https://wiki.openstreetmap.org/wiki/Node
 ///
 #[derive(Default, Deserialize)]
-pub struct Node<'a> {
+pub struct Node {
     pub id: ElementID,
 
     /// Latitude coordinate in degrees (North of equator is positive) using the
@@ -32,20 +32,20 @@ pub struct Node<'a> {
     pub open: Option<bool>,
     pub date: Option<u32>,
     pub timestamp: Timestamp,
-    pub tags: Option<TagMap<'a>>,
+    pub tags: Option<TagMap>,
 }
 
-impl<'a> Node<'a> {
+impl<'a> Node {
     pub fn point(&self) -> (f32, f32) {
         (self.lat, self.lon)
     }
 }
 
-impl<'a> Tagged for Node<'a> {
+impl<'a> Tagged for Node {
     fn get_tag(&self, key: &str) -> Option<&str> {
         self.tags
             .as_ref()
-            .and_then(|tags| tags.get(key).map_or(None, |t| t.as_deref()))
+            .and_then(|tags| tags.get(key).map(|value| *value))
     }
 
     fn has_tag(&self, key: &str) -> bool {

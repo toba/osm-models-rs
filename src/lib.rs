@@ -14,8 +14,9 @@ pub mod item_type {
 use hashbrown::HashMap;
 
 pub use node::Node;
-pub use relation::{restriction, role, Relation};
-pub use way::{travel_by, way_type, Way};
+pub use relation::{role, Relation};
+pub use tag::Tag;
+pub use way::Way;
 
 /// Used for identifying the element. Element types have their own ID space,
 /// so there could be a node with id=100 and a way with id=100, which are
@@ -35,22 +36,20 @@ pub use way::{travel_by, way_type, Way};
 ///
 pub type ElementID = i64;
 
-/// All types of data element (nodes, ways and relations), as well as
+/// All types of data elements (nodes, ways and relations), as well as
 /// changesets, can have tags. Tags describe the meaning of the particular
 /// element to which they are attached.
 ///
-/// A tag consists of two free format text fields; a `key` and a `value`.
+/// A tag consists of two free format text fields: a `key` and a `value`.
 /// Each of these are Unicode strings of up to 255 characters. For example,
 /// `highway=residential` defines the way as a road whose main function is
 /// to give access to people's homes. An element cannot have 2 tags with the
-/// same `key`, the key's must be unique. For example, you cannot have an
+/// same `key`; the keys must be unique. For example, you cannot have an
 /// element tagged both `amenity=restaurant` and `amenity=bar`.
 ///
-/// There is no fixed dictionary of tags, but there are many conventions
-/// documented on this wiki (starting with the Map Features page). Tag usage
-/// can be measured with the Taginfo application. If there is more than one
-/// way to tag a given feature, it's probably best to use the most common
-/// approach.
+/// There is no fixed dictionary of tags, but there are many conventions. If
+/// there is more than one way to tag a given feature, it's probably best to use
+/// the most common approach.
 ///
 /// Not all elements have tags. Nodes are often untagged if they are part of
 /// ways. Both ways and nodes may be untagged if they are members of a
@@ -58,7 +57,7 @@ pub type ElementID = i64;
 ///
 /// https://wiki.openstreetmap.org/wiki/Tags
 ///
-pub type TagMap<'a> = HashMap<&'a str, Option<&'a str>>;
+pub type TagMap = HashMap<&'static str, &'static str>;
 
 /// ISO 8601 time of the last modification (e.g. "2016-12-31T23:59:59.999Z")
 /// https://wiki.openstreetmap.org/wiki/Elements#Common_attributes
@@ -78,9 +77,28 @@ pub type Timestamp = Option<String>;
 ///
 pub struct AreaData<'a> {
     /// Nodes keyed to their ID
-    pub nodes: HashMap<ElementID, Node<'a>>,
+    pub nodes: HashMap<ElementID, Node>,
     /// Ways keyed to their ID
     pub ways: HashMap<ElementID, Way<'a>>,
 
     pub relations: Vec<Relation<'a>>,
+}
+
+#[cfg(test)]
+mod tests {
+    pub fn load_file() {}
+
+    // export async function sampleData(fileName = 'simple'): Promise<AreaData> {
+    //     tiles.fetchIfMissing = false;
+
+    //     if (!cache.has(fileName)) {
+    //        cache.set(
+    //           fileName,
+    //           parseOsmXML(
+    //              await readFileText(path.join(__dirname, fileName + '.osm'))
+    //           )
+    //        );
+    //     }
+    //     return cache.get(fileName)!;
+    //  }
 }
